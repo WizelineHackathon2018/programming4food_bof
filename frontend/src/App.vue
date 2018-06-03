@@ -21,6 +21,15 @@
             <router-link to="/dashboard" class="nav-link">Dashboard</router-link>
           </li>
           <li class="nav-item">
+            <router-link to="/teams" class="nav-link">Teams</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/freelancers" class="nav-link">Search for Freelancers</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/profile" class="nav-link">Profile</router-link>
+          </li>
+          <li class="nav-item">
             <a href="#" class="nav-link" v-on:click="bye()" >Logout</a>
           </li>
         </ul>
@@ -29,7 +38,7 @@
     <router-view/>
     <footer class="footer">
       <div class="container">
-        Powered by Programming 4 Food
+        <p>Powered by Programming 4 Food</p>
       </div>
     </footer>
 
