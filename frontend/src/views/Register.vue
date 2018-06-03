@@ -30,7 +30,7 @@
     </div>
 </template>
 <script>
-import Firebase from 'firebase'
+import {register} from '../utils/auth'
 
 export default {
     data: function() {
@@ -42,14 +42,7 @@ export default {
     },
     methods:{
         signUp: function() {
-            Firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
-                function(user) {
-                    alert('Your account has been created!')
-                },
-                function(error) {
-                    alert('Oops. ' + error.message)
-                }
-            )
+            register(this.email, this.password)
         }
     }
 }

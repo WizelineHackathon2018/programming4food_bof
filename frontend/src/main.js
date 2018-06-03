@@ -5,6 +5,7 @@ import Firebase from 'firebase'
 
 Vue.config.productionTip = false
 
+let app
 let config = {
   apiKey: 'AIzaSyDmXRURCwuxiibGJv15_rp4-F3pDOlAjyw',
   authDomain: 'bandoffreelancers.firebaseapp.com',
@@ -15,8 +16,11 @@ let config = {
 }
 
 Firebase.initializeApp(config)
-
-new Vue({
-  router,
-  render: h => h(App)
-}).$mount('#app')
+Firebase.auth().onAuthStateChanged(function(user){
+  if(!app){
+    app = new Vue({
+      router,
+      render: h => h(App)
+    }).$mount('#app')
+  }
+})

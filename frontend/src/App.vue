@@ -8,12 +8,20 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav mr-auto">
         </div>
-        <ul class="navbar-nav">
+        <ul class="navbar-nav" v-show="!isLoggedIn()">
           <li class="nav-item">
             <router-link to="/login" class="nav-link">Login</router-link>
           </li>
           <li class="nav-item">
             <router-link to="/register" class="nav-link">Register</router-link>
+          </li>
+        </ul>
+        <ul class="navbar-nav" v-show="isLoggedIn()">
+          <li class="nav-item">
+            <router-link to="/dashboard" class="nav-link">Dashboard</router-link>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" v-on:click="bye()" >Logout</a>
           </li>
         </ul>
       </div>
@@ -27,24 +35,17 @@
 
   </div>
 </template>
+<script>
+import {isLoggedIn, logout} from './utils/auth'
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+export default {
+  methods: {
+    isLoggedIn(){
+      return isLoggedIn()
+    },
+    bye(){
+      logout()
+    }
+  }
 }
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+</script>

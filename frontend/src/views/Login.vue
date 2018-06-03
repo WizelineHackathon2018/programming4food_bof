@@ -23,7 +23,7 @@
     </div>
 </template>
 <script>
-import Firebase from 'firebase'
+import {login} from '../utils/auth'
 
 export default {
     data: function() {
@@ -34,14 +34,7 @@ export default {
     },
     methods: {
         signIn: function(){
-            Firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
-                function(user){
-                    router.push("dashboard")
-                },
-                function(error){
-                    alert("Oops. " + error.message)
-                }
-            )
+            login(this.email, this.password)
         }
     }    
 }
