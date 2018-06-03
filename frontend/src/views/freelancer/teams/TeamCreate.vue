@@ -29,6 +29,7 @@
 </template>
 <script>
 import Firebase from '@/utils/firebase-connector'
+import alertify from 'alertify.js'
 
 let db = Firebase.database()
 let teamsRef = db.ref('Teams')
@@ -53,7 +54,7 @@ export default {
             console.log(Firebase.auth().currentUser)
             teamsRef.push(this.team)
 
-            $.notify("Team has been created", "success");
+            alertify.success("Profile has been updated");
             
             this.team.team_name = '',
             this.team.team_description = '',
