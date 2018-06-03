@@ -1,28 +1,60 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Band of Freelancers</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav mr-auto">
+        </div>
+        <ul class="navbar-nav" v-show="!isLoggedIn()">
+          <li class="nav-item">
+            <router-link to="/login" class="nav-link">Login</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/register" class="nav-link">Register</router-link>
+          </li>
+        </ul>
+        <ul class="navbar-nav" v-show="isLoggedIn()">
+          <li class="nav-item">
+            <router-link to="/dashboard" class="nav-link">Dashboard</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/teams" class="nav-link">Teams</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/freelancers" class="nav-link">Search for Freelancers</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/profile" class="nav-link">Profile</router-link>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" v-on:click="bye()" >Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <router-view/>
+    <footer class="footer">
+      <div class="container">
+        <p>Powered by Programming 4 Food</p>
+      </div>
+    </footer>
+
   </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import {isLoggedIn, logout} from './utils/auth'
 
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
+  methods: {
+    isLoggedIn(){
+      return isLoggedIn()
+    },
+    bye(){
+      logout()
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
